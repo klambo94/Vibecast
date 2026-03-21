@@ -7,4 +7,10 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  namespace :api do
+    namespace :v1 do
+      resources :vibe_sessions, only: [:index, :create, :show]
+      resources :recommendations, only: [:index, :update]
+    end
+  end
 end
