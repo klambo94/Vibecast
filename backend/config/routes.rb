@@ -10,7 +10,11 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :vibe_sessions, only: [:index, :create, :show]
-      resources :recommendations, only: [:index, :update]
+      resources :recommendations, only: [:index, :update] do
+        collection do
+          get :favorites
+        end
+      end
     end
   end
 end

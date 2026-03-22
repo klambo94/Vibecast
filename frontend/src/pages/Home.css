@@ -1,0 +1,51 @@
+
+
+
+.btn-primary {
+    background-color: var(--accent);
+    border-color: var(--accent);
+    border-radius: 5%;
+    width: 200px;
+    height: 25px;
+    text-align: center;
+    color: white;
+    margin: 10px;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top:2%;
+    justify-content: center;
+
+}
+
+.input-row {
+    display: flex;
+    gap: .5rem;
+    width: 500px;
+}
+
+.vibe-input {
+    border-radius: 2%;
+    text-align: center;
+    padding: 5px;
+    width: 100%;
+}
+.session-mood {
+    border: 1px solid rgba(213, 59, 255, 0.50);
+    border-radius: 10px;
+    background-color: rgba(213, 59, 255, 0.27);
+    display: inline-block;
+    padding: 4px 12px;
+    font-size: 0.75rem;
+    margin: 2%;
+}
+.page-header {
+    display: flex;
+    justify-content: center;
+    padding-top: 10%;
+    font-size: calc(10px + 2vmin);
+}
+

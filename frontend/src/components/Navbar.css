@@ -1,0 +1,27 @@
+.navbar {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding: 1rem 2rem;
+    border-bottom: 1px solid var(--border);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.navbar-link {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s ease;
+}
+
+.navbar-link:hover {
+    color: var(--accent);
+}
+
+.navbar-brand {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--text);
+    margin-right: auto;
+}

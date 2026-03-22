@@ -16,7 +16,7 @@ class Api::V1::VibeSessionsController < ApplicationController
 
     # validate first before hitting the API
     unless vibe_session.valid?
-      render json: { error: vibe_session.errors.full_messages }, status: :unprocessable_entity
+      render json: { error: vibe_session.errors.full_messages }, status: :unprocessable_content
       return
     end
 
@@ -25,17 +25,18 @@ class Api::V1::VibeSessionsController < ApplicationController
 
     response = client.messages.create(
       model: "claude-haiku-4-5",
-      max_tokens: 1024,
+      max_tokens: 512,
       messages: [
         Anthropic::Models::MessageParam.new(
           role: "user",
-          content: "You are a music recommendation engine. Given a mood or vibe, return exactly 5 music recommendations as a JSON array. Each object must have: artist, track, genre, reason. Return only valid JSON, no explanation, no markdown. Mood: #{params[:mood_input]}"
-        )
+          content: "You are a music recommendation engine. Given a mood or vibe, return exactly 6 music recommendations as a JSON array. Each object must have these exact keys: artist, track, genre, reason. Your response must be a raw JSON array only. Do not wrap in markdown. Do not include any explanation. Only output the JSON array itself. Mood: #{params[:mood_input]}")
       ]
     )
 
     # 3. parse the response
-    recommendations_data = JSON.parse(response.content.first.text)
+    raw = response.content.first.text
+    cleaned = raw.gsub(/```json|```/, '').strip
+    recommendations_data = JSON.parse(cleaned)
 
     # 4. save vibe session + recommendations
     if vibe_session.save
@@ -52,7 +53,7 @@ class Api::V1::VibeSessionsController < ApplicationController
       # 5. return JSON
       render json: vibe_session, include: :recommendations, status: :created
     else
-      render json: { error: vibe_session.errors.full_messages }, status: :unprocessable_entity
+      render json: { error: vibe_session.errors.full_messages }, status: :unprocessable_content
     end
   end
 end
