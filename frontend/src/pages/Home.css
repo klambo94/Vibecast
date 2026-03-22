@@ -42,10 +42,5 @@
     font-size: 0.75rem;
     margin: 2%;
 }
-.page-header {
-    display: flex;
-    justify-content: center;
-    padding-top: 10%;
-    font-size: calc(10px + 2vmin);
-}
+
 

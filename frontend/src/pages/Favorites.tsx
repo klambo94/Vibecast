@@ -41,7 +41,7 @@ export default function Favorites() {
     if (error) return <p>{error}</p>
 
     return (
-        <div className="container">
+        <div className="fav-container">
             <span className="page-header">Your Favorite Recommendations</span>
             {favorites == null || favorites.length === 0 &&
                 <p>No Recommendations yet. Go cast a vibe!</p>}
